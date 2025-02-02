@@ -1,4 +1,4 @@
-name: Build any Deploy to docker hub
+name: Build and Deploy to docker hub
 
 on: 
   push:
@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  first-build-then-push
+  first-build-then-push:
     runs-on: ubuntu-latest
     steps: 
     - name: Checkout Repo
@@ -22,9 +22,9 @@ jobs:
       uses: docker/build-push-action@v2
       with: 
         context: .
-        file: /docker/Dockerfile.user
+        file: docker/Dockerfile.user
         push: true
         tags: azzamuddin/cd-class:latest
 
     - name: Verify pushed image
-      run: docker pull azzamuddin/cd-class:lastest
+      run: docker pull azzamuddin/cd-class:latest
